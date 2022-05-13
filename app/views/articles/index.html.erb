@@ -1,0 +1,46 @@
+<%= turbo_stream_from :articles %>
+<div class="main-header-banner text-center">
+  <h1 style="font-weight: 800;">Simple Blog!</h1>
+  <p class="fs-5">Quickly and easily get started with Bootstrap's compiled, production-ready files with this barebones example featuring some basic HTML and helpful links. Download all our examples to get started.</p>
+
+  <div class="mb-5">
+    <% if current_user %>
+    <%= link_to new_article_path, class: 'btn btn-success btn-lg px-4' do %>
+    Write a Blog
+    <% end %>
+    <% else %>
+    <button type="button" class="btn btn-primary btn-lg px-4">Learn More</button>
+    <% end %>
+
+  </div>
+
+  <hr>
+</div>
+<div id="user-filter" class="mb-3">
+  <b>Filter by user</b>
+  <%= form_with url: articles_path, method: :get, data: { controller: "search-form", search_form_target: "form", turbo_frame: "articles" } do |form| %>
+  <%= form.select :user_id,
+  options_for_select(
+    [["All Users", '']]+User.all.pluck(:first_name, :id),
+    params[:user_id]
+    ),
+  { include_blank: false },
+  class: "form-select",
+    data: { 
+      action: "change->search-form#search" 
+    } 
+  %>
+  <% end %>
+</div>
+<div id="articles">
+  <% if @articles.any? %>
+  <%= render :partial => "article_preview", :collection => @articles, :as => :article %>
+  <%== pagy_bootstrap_nav(@pagy) %>
+  <% else %>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    No articles to show!
+  </div>
+  <% end %>
+</div>
+
+

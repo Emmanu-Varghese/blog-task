@@ -1,0 +1,14 @@
+<div id="pager" class="min-w-full my-8 flex text-center">
+  <div>
+    <% if pagy.next %>
+      <%= link_to(
+        "Load previous announcements",
+        announcements_path(page: pagy.next),
+        class: "btn btn-primary btn-sm mt-3 mb-3",
+        data: {
+          turbo_frame: "announcement_handler"
+        }
+      ) %>
+    <% end %>
+  </div>
+</div>

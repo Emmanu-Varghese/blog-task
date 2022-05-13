@@ -1,0 +1,7 @@
+<%= turbo_stream_from :article %>
+<main>
+   <%= render @article %>
+  <% if current_user %>
+  <%= render partial: "show_actions"%>
+  <% end %>
+</main>
