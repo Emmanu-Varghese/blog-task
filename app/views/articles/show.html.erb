@@ -1,4 +1,6 @@
 <%= turbo_stream_from :article %>
+<%= turbo_frame_tag "remote_modal" %>
+
 <main class="mb-4">
    <%= render @article %>
   <% if current_user %>

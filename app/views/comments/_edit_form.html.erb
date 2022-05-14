@@ -1,0 +1,14 @@
+<%= form_with(model: comment, local: false, id: "edit-comment-form") do |form| %>
+
+
+  <div class="mb-3">
+      <%= form.rich_text_area :content %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <button type="button" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close">Close</button>
+
+  </div>
+<% end %>
