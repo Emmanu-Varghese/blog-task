@@ -3,6 +3,7 @@ class Article < ApplicationRecord
 
   validates :title, :body, presence: true
   belongs_to :user
+  has_many :comments, as: :commentable
   after_create :create_announcement
 
   # after_create_commit ->(_article) { broadcast_prepend_to :articles, partial: "articles/article_preview" }

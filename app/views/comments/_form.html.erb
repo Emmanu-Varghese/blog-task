@@ -1,7 +1,8 @@
-<%= form_with(model: comment) do |form| %>
+<%= form_with(model: comment, local: false, id: "new-comment-form") do |form| %>
+  <!-- needs to change -->
   <div class="mb-3">
     <%= form.hidden_field :commentable_type, class: 'form-control', value: "Article" %>
-    <%= form.hidden_field :commentable_id, class: 'form-control', value: Article.first.id %>
+    <%= form.hidden_field :commentable_id, class: 'form-control', value: params[:id] %>
   </div>
 
   <div class="mb-3">

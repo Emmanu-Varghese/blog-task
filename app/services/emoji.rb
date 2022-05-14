@@ -2,7 +2,7 @@ class Emoji
   # [{key: emoji.png, text: Emoji}, {}]
   # Emoji.all
   def self.all
-    self.new.all
+    new.all
   end
 
   def all
@@ -16,7 +16,7 @@ class Emoji
   end
 
   def emojis_path
-    Rails.root.join('app', 'assets', 'images', 'emojis')
+    Rails.root.join("app", "assets", "images", "emojis")
   end
 
   def emoji_hash(file)
