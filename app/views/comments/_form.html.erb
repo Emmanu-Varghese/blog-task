@@ -13,12 +13,11 @@
 
   <div class="mb-3">
     <%= form.label :commentable_id, class: 'form-label' %>
-      <%= form.text_field :commentable_id, class: 'form-control' %>
-    </div>
+    <%= form.text_field :commentable_id, class: 'form-control' %>
+  </div>
 
   <div class="mb-3">
-    <%= form.label :user_id, class: 'form-label' %>
-      <%= form.text_field :user_id, class: 'form-control' %>
+      <%= form.rich_text_area :content %>
     </div>
 
   <div class="mb-3">
