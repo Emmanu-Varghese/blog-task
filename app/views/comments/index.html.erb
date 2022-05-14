@@ -1,29 +1,9 @@
-
-
-
+<%= turbo_stream_from :comments %>
 <div class="row">
   <div class="col-sm-6">
     <h1>Comments</h1>
   </div>
-
-<% @comments.each do |comment| %>
-  <div class='comment'>
-    <%= comment.content %>
-    <em class='meta'>
-      <%= comment.user.name %> |
-      <%= comment.created_at %> |
-      <%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
-    </em>
-    <div class='emojis'>
-      <% Emoji.all.each do |emoji| %>
-        <% size = comment.emotes_size(emoji[:key]) %>
-        <%= link_to comment_emote_path(comment, emote: emoji[:key]), class: "emoji #{size.zero? ? 'emoji-gray' : ''}", remote: true do %>
-          <%= image_tag File.join('emojis', emoji[:key]), size: '25x25', title: emoji[:text] %>
-          <%= content_tag :span, size, class: 'count' %>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-<% end %>
-
+<div id="comments">
+<%= render @comments %>
+</div>
 <%= render 'form', comment: Comment.new %>

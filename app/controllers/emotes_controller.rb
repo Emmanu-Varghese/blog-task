@@ -7,6 +7,6 @@ class EmotesController < ApplicationController
     else
       emote.destroy
     end
-    redirect_to comments_path
+    comment.touch
   end
 end
