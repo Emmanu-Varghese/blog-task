@@ -3,7 +3,7 @@ class Comment < ApplicationRecord
   belongs_to :commentable, polymorphic: true
   belongs_to :user
 
-  has_rich_text :content
+  has_rich_text :body
   has_many :emotes, dependent: :destroy
 
   after_create_commit do
