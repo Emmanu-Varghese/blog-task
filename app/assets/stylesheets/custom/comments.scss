@@ -1,0 +1,43 @@
+.comment {
+  border: 1px dashed gray;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.comment .meta,
+.comment .meta a {
+  color: gray;
+}
+
+.emojis {
+  margin-top: 10px;
+}
+
+.emoji img {
+  padding: 5px;
+}
+
+.emoji.emoji-gray img {
+  filter: grayscale(100%);
+}
+
+.emoji.emoji-gray img:hover {
+  filter: grayscale(0%);
+}
+
+.emoji {
+  position: relative;
+}
+
+.emoji .count {
+  position: absolute;
+  top: 10;
+  left: 0;
+  padding: 4px;
+  background-color: #269ba5;
+  text-decoration: none;
+  color: #ffffff;
+  border-radius: 20px;
+  font-size: 10px;
+  line-height:0.5;
+}

@@ -12,4 +12,6 @@ class User < ApplicationRecord
 
   has_many :notifications, as: :recipient, dependent: :destroy
   has_many :articles, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :emotes, dependent: :destroy
 end

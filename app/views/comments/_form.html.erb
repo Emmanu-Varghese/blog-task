@@ -1,0 +1,27 @@
+<%= form_with(model: comment, local: false, id: "new-comment-form") do |form| %>
+  <!-- needs to change -->
+  <div class="mb-3">
+    <%= form.hidden_field :commentable_type, class: 'form-control', value: "Article" %>
+    <%= form.hidden_field :commentable_id, class: 'form-control', value: params[:id] %>
+  </div>
+
+  <div class="mb-3">
+      <%= form.rich_text_area :content %>
+    </div>
+
+  <div class="mb-3">
+    <% if comment.persisted? %>
+      <div class="float-end">
+        <%= link_to 'Destroy', comment, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if comment.persisted? %>
+      <%= link_to "Cancel", comment, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", comments_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

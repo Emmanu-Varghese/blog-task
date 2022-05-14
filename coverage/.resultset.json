@@ -19,6 +19,14 @@
           null
         ]
       },
+      "/home/emmanu/Workspace/blog-task/app/models/comment.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null
+        ]
+      },
       "/home/emmanu/Workspace/blog-task/app/models/article.rb": {
         "lines": [
           1,
@@ -26,17 +34,52 @@
           null,
           1,
           1,
+          1,
           null,
-          11,
-          3,
-          3,
+          null,
+          1,
+          1,
+          16,
+          null,
+          1,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
           15,
           null,
-          2,
           null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/emmanu/Workspace/blog-task/app/models/announcement.rb": {
+        "lines": [
           1,
           1,
           null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          21,
+          21,
+          null,
+          null,
+          16,
+          null,
+          1,
+          15,
           null,
           null
         ]
@@ -66,14 +109,12 @@
           null
         ]
       },
-      "/home/emmanu/Workspace/blog-task/app/controllers/articles_controller.rb": {
+      "/home/emmanu/Workspace/blog-task/app/controllers/comments_controller.rb": {
         "lines": [
           1,
           1,
-          1,
           null,
           null,
-          1,
           1,
           1,
           null,
@@ -137,56 +178,6 @@
           null,
           1,
           7,
-          null,
-          null
-        ]
-      },
-      "/home/emmanu/Workspace/blog-task/app/controllers/concerns/filterable.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          null,
-          null,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          null,
-          null
-        ]
-      },
-      "/home/emmanu/Workspace/blog-task/app/models/announcement.rb": {
-        "lines": [
-          1,
-          1,
-          null,
-          1,
-          null,
-          1,
-          1,
-          1,
-          null,
-          1,
-          0,
-          0,
-          null,
-          null,
-          1,
-          null,
-          1,
-          0,
           null,
           null
         ]
@@ -272,6 +263,6 @@
         ]
       }
     },
-    "timestamp": 1652466728
+    "timestamp": 1652497176
   }
 }
