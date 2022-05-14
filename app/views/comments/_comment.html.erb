@@ -2,10 +2,10 @@
   <div class='comment'>
     <small class='meta w-100 text-end float-end'>
       <%= comment.user.name %> |
-      <%= comment.created_at %> |
-      <%= link_to "Edit", edit_comment_path(comment), "data-controller": "turbo" %> |
-
-      <%= link_to 'Destroy', comment, method: :delete, remote: true, data: { confirm: 'Are you sure?' } %>
+      <%= comment.created_at %> |  
+      <span id="comment-action-<%= comment.id %>">
+        <%= link_to "Review", edit_comment_path(comment), "data-controller": "turbo" %>
+      </span>
     </small>
     <%= comment.body %>
     

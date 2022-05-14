@@ -6,18 +6,3 @@
     </div>
   </div>
 <% end %>
-<% if params[:payment] == "success" %>
-<div class="container mt-4 mx-auto">
-    <div class="alert alert-primary alert-dismissible fade show" role="alert">
-      Thank you! You are successfully upgraded to pro user.
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-  </div>
-<% elsif params[:payment] == "failure" %>
-<div class="container mt-4 mx-auto">
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      There Was An Error Processing Your Card. Please try again later.
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-  </div>
-<% end %>

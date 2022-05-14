@@ -3,7 +3,7 @@
 
 <main class="mb-4">
    <%= render @article %>
-  <% if current_user %>
+  <% if can? :manage, @article %>
   <%= render partial: "show_actions"%>
   <% end %>
 </main>
@@ -12,4 +12,6 @@
 <%= content_tag :div, id: "#{dom_id(@article)}_comments" do %>
 <%= render @article.comments %>
 <% end %>
+<% if can? :create, Comment %> 
 <%= render 'comments/form', comment: Comment.new %>
+<% end %>

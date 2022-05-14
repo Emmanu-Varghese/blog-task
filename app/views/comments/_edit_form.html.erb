@@ -6,6 +6,11 @@
     </div>
 
   <div class="mb-3">
+      <% if comment.persisted? %>
+  <div class="float-end">
+    <%= link_to 'Destroy', comment, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+  </div>
+  <% end %>
     <%= form.submit class: 'btn btn-primary' %>
 
     <button type="button" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close">Close</button>
