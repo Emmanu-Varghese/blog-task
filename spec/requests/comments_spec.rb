@@ -18,7 +18,8 @@ RSpec.describe "/comments", type: :request do
   # Comment. As you add validations to Comment, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    { commentable_type: "Article", commentable_id: create(:article).id, user_id: user.id }
+    { body: Faker::Lorem.words(number: rand(2..10)).join(" "), commentable_type: "Article",
+      commentable_id: create(:article).id, user_id: user.id }
   }
 
   let(:invalid_attributes) {
@@ -42,6 +43,10 @@ RSpec.describe "/comments", type: :request do
   end
 
   describe "GET /new" do
+    before do
+      sign_in user
+    end
+
     it "renders a successful response" do
       get new_comment_url
       expect(response).to be_successful
@@ -49,6 +54,10 @@ RSpec.describe "/comments", type: :request do
   end
 
   describe "GET /edit" do
+    before do
+      sign_in user
+    end
+
     it "renders a successful response" do
       comment = Comment.create! valid_attributes
       get edit_comment_url(comment)
@@ -70,7 +79,7 @@ RSpec.describe "/comments", type: :request do
 
       it "redirects to the created comment" do
         post comments_url, params: { comment: valid_attributes }
-        expect(response).to redirect_to(comment_url(Comment.last))
+        expect(response).to redirect_to(comments_url)
       end
     end
 
@@ -95,7 +104,8 @@ RSpec.describe "/comments", type: :request do
 
     context "with valid parameters" do
       let(:new_attributes) {
-        { commentable_type: "Article", commentable_id: create(:article).id, user_id: user.id }
+        { body: Faker::Lorem.words(number: rand(2..10)).join(" "), commentable_type: "Article",
+          commentable_id: create(:article).id, user_id: user.id }
       }
 
       it "updates the requested comment" do
@@ -123,6 +133,10 @@ RSpec.describe "/comments", type: :request do
   end
 
   describe "DELETE /destroy" do
+    before do
+      sign_in user
+    end
+
     it "destroys the requested comment" do
       comment = Comment.create! valid_attributes
       expect {

@@ -42,6 +42,10 @@ RSpec.describe "/articles", type: :request do
   end
 
   describe "GET /new" do
+    before do
+      sign_in user
+    end
+
     it "renders a successful response" do
       get new_article_url
       expect(response).to be_successful
@@ -49,6 +53,10 @@ RSpec.describe "/articles", type: :request do
   end
 
   describe "GET /edit" do
+    before do
+      sign_in user
+    end
+
     it "renders a successful response" do
       article = Article.create! valid_attributes
       get edit_article_url(article)
@@ -123,6 +131,10 @@ RSpec.describe "/articles", type: :request do
   end
 
   describe "DELETE /destroy" do
+    before do
+      sign_in user
+    end
+
     it "destroys the requested article" do
       article = Article.create! valid_attributes
       expect {
