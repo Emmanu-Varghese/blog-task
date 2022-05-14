@@ -80,7 +80,7 @@ group :test do
 end
 gem "cssbundling-rails"
 gem "devise", "~> 4.8", ">= 4.8.0"
-gem 'cancancan'
+gem "cancancan"
 gem "friendly_id", "~> 5.4"
 gem "jsbundling-rails"
 

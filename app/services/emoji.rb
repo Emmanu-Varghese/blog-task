@@ -16,7 +16,7 @@ class Emoji
   end
 
   def emojis_path
-    Rails.root.join("app", "assets", "images", "emojis")
+    Rails.root.join("app/assets/images/emojis")
   end
 
   def emoji_hash(file)
