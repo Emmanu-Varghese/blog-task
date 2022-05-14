@@ -8,6 +8,11 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :turbo_frame_request_variant
 
+  rescue_from CanCan::AccessDenied do |exception|
+     flash.now[:alert] = exception.message
+     render turbo_stream: turbo_stream.update("flash", partial: "shared/notices")
+  end
+
   private
 
   def turbo_frame_request_variant

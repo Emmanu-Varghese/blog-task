@@ -84,6 +84,7 @@ GEM
       msgpack (~> 1.2)
     brakeman (5.2.1)
     builder (3.2.4)
+    cancancan (3.3.0)
     capybara (3.36.0)
       addressable
       matrix
@@ -384,6 +385,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   brakeman
+  cancancan
   capybara-selenium (~> 0.0.6)
   cssbundling-rails
   database_cleaner-active_record
