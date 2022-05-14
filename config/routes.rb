@@ -1,7 +1,9 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
-  resources :comments
+  resources :comments do
+    resource :emote, only: :show
+  end
   resources :articles
   mount Sidekiq::Web => "/sidekiq"
 

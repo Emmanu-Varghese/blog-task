@@ -14,6 +14,15 @@
       <%= comment.created_at %> |
       <%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
     </em>
+    <div class='emojis'>
+      <% Emoji.all.each do |emoji| %>
+        <% size = comment.emotes_size(emoji[:key]) %>
+        <%= link_to comment_emote_path(comment, emote: emoji[:key]), class: "emoji #{size.zero? ? 'emoji-gray' : ''}", remote: true do %>
+          <%= image_tag File.join('emojis', emoji[:key]), size: '25x25', title: emoji[:text] %>
+          <%= content_tag :span, size, class: 'count' %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 <% end %>
 
