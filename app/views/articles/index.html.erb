@@ -4,14 +4,9 @@
   <p class="fs-5">Quickly and easily get started with Bootstrap's compiled, production-ready files with this barebones example featuring some basic HTML and helpful links. Download all our examples to get started.</p>
 
   <div class="mb-5">
-    <% if current_user %>
-    <%= link_to new_article_path, class: 'btn btn-success btn-lg px-4' do %>
+   <%= link_to new_article_path, class: 'btn btn-success btn-lg px-4' do %>
     Write a Blog
     <% end %>
-    <% else %>
-    <button type="button" class="btn btn-primary btn-lg px-4">Learn More</button>
-    <% end %>
-
   </div>
 
   <hr>

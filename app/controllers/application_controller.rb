@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     flash.now[:alert] = exception.message
     respond_to do |format|
+      format.html { redirect_to root_path, alert: exception.message }
       format.turbo_stream { render turbo_stream: turbo_stream.update("flash", partial: "shared/notices") }
       format.js { render file: "app/views/shared/unauthorized.js.erb" }
     end
