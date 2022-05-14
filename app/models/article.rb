@@ -2,12 +2,12 @@ class Article < ApplicationRecord
   FILTER_PARAMS = %i[user_id].freeze
 
   validates :title, :body, presence: true
+
   belongs_to :user
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, dependent: :destroy
   has_rich_text :body
   after_create :create_announcement
 
-  # after_create_commit ->(_article) { broadcast_prepend_to :articles, partial: "articles/article_preview" }
   after_update_commit ->(_article) { broadcast_replace_to :articles, partial: "articles/article_preview" }
   after_destroy_commit ->(_article) { broadcast_remove_to :articles }
   broadcasts_to ->(_article) { :article }

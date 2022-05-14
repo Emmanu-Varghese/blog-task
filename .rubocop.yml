@@ -38,7 +38,7 @@ Metrics/MethodLength:
   Description: 'Avoid methods longer than 5 lines of code.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#short-methods'
   Max: 10
-  Enabled: true
+  
 
 Metrics/BlockLength:
   CountComments: false
@@ -53,6 +53,13 @@ Metrics/BlockLength:
     - draw
     - configure
     - group
+
+Metrics/AbcSize:
+  Max: 20
+
+Metrics/MethodLength:
+  Max: 20
+
 
 # Style Cops
 
@@ -176,6 +183,9 @@ Layout/MultilineMethodCallIndentation:
 
 Rails/Delegate:
   Description: 'Prefer delegate method for delegations.'
+  Enabled: false
+
+Rails/SkipsModelValidations:
   Enabled: false
 
 # Bundler Cops
