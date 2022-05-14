@@ -7,7 +7,7 @@
 
       <%= link_to 'Destroy', comment, method: :delete, remote: true, data: { confirm: 'Are you sure?' } %>
     </small>
-    <%= comment.content %>
+    <%= comment.body %>
     
     <div class='emojis'>
       <% Emoji.all.each do |emoji| %>
