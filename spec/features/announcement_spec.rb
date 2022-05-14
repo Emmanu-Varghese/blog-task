@@ -52,9 +52,9 @@ RSpec.describe "Announcement view" do
       expect(page).to have_content announcements.last.name
     end
 
-    it "announcements list has 10 items" do
+    it "announcements list has 5 items" do
       visit "/announcements"
-      expect(page).to have_selector(".announcement", count: 10)
+      expect(page).to have_selector(".announcement", count: 5)
     end
 
     it "Load previous announcements button is visible in announcements page" do
@@ -62,10 +62,10 @@ RSpec.describe "Announcement view" do
       expect(page).to have_content("Load previous announcements")
     end
 
-    it "Clicking Load previous announcement button loads 10 previous announcements" do
+    it "Clicking Load previous announcement button loads 5 previous announcements" do
       visit "/announcements"
       click_link "Load previous announcements"
-      expect(page).to have_selector(".announcement", count: 20)
+      expect(page).to have_selector(".announcement", count: 5)
     end
 
     it "No red dots is shown to user who already visited announcement" do

@@ -23,6 +23,7 @@ class Article < ApplicationRecord
     Announcement.create(
       announcement_type: "new",
       name: "New Article published by #{user.name}",
-      description: "New Article published by #{user.name}")
+      description: "New Article published by #{user.name}",
+    )
   end
 end

@@ -12,15 +12,9 @@ RSpec.describe "Home page" do
       expect(page).to have_content "Learn More"
     end
 
-    it "shows the Liked Blogs heading" do
+    it "shows the Filter by user text" do
       visit "/"
-      expect(page).to have_content "Liked Blogs
-"
-    end
-
-    it "shows the Read Later heading" do
-      visit "/"
-      expect(page).to have_content "Read Later"
+      expect(page).to have_content "Filter by user"
     end
 
     it "shows copyright at the bottom" do
