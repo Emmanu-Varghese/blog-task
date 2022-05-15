@@ -6,7 +6,6 @@ class Article < ApplicationRecord
 
   belongs_to :user
   has_many :comments, as: :commentable, dependent: :destroy
-  has_rich_text :body
 
   after_update_commit ->(_article) { broadcast_replace_to :articles, partial: "articles/article_preview" }
   after_destroy_commit ->(_article) { broadcast_remove_to :articles }
