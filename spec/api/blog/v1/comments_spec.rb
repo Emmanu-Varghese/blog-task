@@ -47,28 +47,32 @@ RSpec.describe "Api::Blog::V1::Comments", type: :request do
   describe "POST /api/blog/v1/users/:user_id/articles/:article_id/comments" do
     context "when article id is invalid" do
       it "returns http 404" do
-        post "/api/blog/v1/users/#{user.id}/articles/#{rand(100...400)}/comments", params: { comment: valid_attributes }, as: :json
+        post "/api/blog/v1/users/#{user.id}/articles/#{rand(100...400)}/comments",
+             params: { comment: valid_attributes }, as: :json
         expect(response).to have_http_status(:not_found)
       end
     end
 
     context "when body is nil" do
       it "returns http 422" do
-        post "/api/blog/v1/users/#{user.id}/articles/#{article.id}/comments", params: { comment: attributes_with_body_blank }, as: :json
+        post "/api/blog/v1/users/#{user.id}/articles/#{article.id}/comments",
+             params: { comment: attributes_with_body_blank }, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
 
     context "when user is nil" do
       it "returns http 422" do
-        post "/api/blog/v1/users/#{user.id}/articles/#{article.id}/comments", params: { comment: attributes_with_user_blank }, as: :json
+        post "/api/blog/v1/users/#{user.id}/articles/#{article.id}/comments",
+             params: { comment: attributes_with_user_blank }, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
 
     context "when everthing good" do
       it "returns http 200" do
-        post "/api/blog/v1/users/#{user.id}/articles/#{article.id}/comments", params: { comment: valid_attributes }, as: :json
+        post "/api/blog/v1/users/#{user.id}/articles/#{article.id}/comments", params: { comment: valid_attributes },
+                                                                              as: :json
         expect(response).to have_http_status(:created)
       end
     end
@@ -79,7 +83,7 @@ RSpec.describe "Api::Blog::V1::Comments", type: :request do
     context "when article id is invalid" do
       it "returns http 404" do
         patch "/api/blog/v1/users/#{user.id}/articles/#{rand(100...400)}/comments/#{comment.id}", params: { comment: valid_attributes },
-                                                                                 as: :json
+                                                                                                  as: :json
         expect(response).to have_http_status(:not_found)
       end
     end
@@ -87,7 +91,7 @@ RSpec.describe "Api::Blog::V1::Comments", type: :request do
     context "when comment id is invalid" do
       it "returns http 404" do
         patch "/api/blog/v1/users/#{user.id}/articles/#{article.id}/comments/#{rand(100...400)}", params: { comment: valid_attributes },
-                                                                                 as: :json
+                                                                                                  as: :json
         expect(response).to have_http_status(:not_found)
       end
     end
@@ -103,7 +107,7 @@ RSpec.describe "Api::Blog::V1::Comments", type: :request do
     context "when everthing good" do
       it "returns http 200" do
         patch "/api/blog/v1/users/#{user.id}/articles/#{article.id}/comments/#{comment.id}", params: { comment: valid_attributes },
-                                                                            as: :json
+                                                                                             as: :json
         expect(response).to have_http_status(:ok)
       end
     end

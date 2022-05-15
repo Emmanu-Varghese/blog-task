@@ -8,9 +8,7 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   has_person_name
-  has_noticed_notifications
 
-  has_many :notifications, as: :recipient, dependent: :destroy
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :emotes, dependent: :destroy

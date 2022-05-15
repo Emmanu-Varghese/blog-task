@@ -3,7 +3,7 @@ module Api
     module V1
       # :nodoc:
       class ArticlesController < ApplicationController
-        protect_from_forgery with: :null_session, if: Proc.new {|c| c.request.format.json? }
+        protect_from_forgery with: :null_session, if: proc { |c| c.request.format.json? }
         before_action :verify_and_set_user
         before_action :verify_and_set_article, only: %i[show update destroy]
 

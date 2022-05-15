@@ -104,14 +104,16 @@ RSpec.describe "Api::Blog::V1::Articles", type: :request do
 
     context "when title is nil" do
       it "returns http 422" do
-        patch "/api/blog/v1/users/#{user.id}/articles/#{article.id}", params: { article: attributes_with_title_blank }, as: :json
+        patch "/api/blog/v1/users/#{user.id}/articles/#{article.id}", params: { article: attributes_with_title_blank },
+                                                                      as: :json
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
 
     context "when body is nil" do
       it "returns http 422" do
-        patch "/api/blog/v1/users/#{user.id}/articles/#{article.id}", params: { article: attributes_with_body_blank }, as: :json
+        patch "/api/blog/v1/users/#{user.id}/articles/#{article.id}", params: { article: attributes_with_body_blank },
+                                                                      as: :json
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end

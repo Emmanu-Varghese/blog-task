@@ -77,12 +77,11 @@ gem "cancancan"
 gem "jsbundling-rails"
 
 gem "name_of_person", "~> 1.1"
-gem "noticed", "~> 1.4"
 gem "sidekiq", "~> 6.2"
 gem "rubocop-rails", require: false
 gem "rubocop-performance", require: false
 gem "rubocop-rspec", require: false
 gem "pagy", "~> 5.10"
-gem "view_component", "~> 2.51"
+
 gem "terser", "~> 1.1", ">= 1.1.1"
 gem "active_model_serializers"

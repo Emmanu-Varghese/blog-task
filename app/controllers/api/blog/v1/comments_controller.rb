@@ -3,8 +3,8 @@ module Api
     module V1
       # :nodoc:
       class CommentsController < ApplicationController
-        protect_from_forgery with: :null_session, if: Proc.new {|c| c.request.format.json? }
-        
+        protect_from_forgery with: :null_session, if: proc { |c| c.request.format.json? }
+
         before_action :verify_and_set_params
         before_action :verify_and_set_comment, except: %i[index create]
 

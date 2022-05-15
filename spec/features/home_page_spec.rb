@@ -66,16 +66,8 @@ RSpec.describe "Home page" do
     end
   end
 
-  context "when user click whats new link in the home page" do
-    it "redirects to announcements page" do
-      visit "/"
-      click_link "What's New"
-      expect(page).to have_current_path(announcements_path)
-    end
-  end
-
-  context "when no announcements are there and user visits home page" do
-    it "redirects to announcements page" do
+  context "when no articles are there and user visits home page" do
+    it "No articles to show alert is displayed" do
       visit "/"
       expect(page).to have_content("No articles to show!")
     end
