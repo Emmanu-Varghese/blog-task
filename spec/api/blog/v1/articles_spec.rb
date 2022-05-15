@@ -25,7 +25,7 @@ RSpec.describe "Api::Blog::V1::Articles", type: :request do
   describe "GET /api/blog/v1/articles/:article_id" do
     context "when article id is nil" do
       it "returns http 422" do
-        get "/api/blog/v1/articles/nil", as: :json
+        get "/api/blog/v1/articles/#{nil}", as: :json
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -49,28 +49,28 @@ RSpec.describe "Api::Blog::V1::Articles", type: :request do
   describe "POST /api/blog/v1/articles" do
     context "when title is nil" do
       it "returns http 422" do
-        post "/api/blog/v1/articles", params: { article: attributes_with_title_blank }
+        post "/api/blog/v1/articles", params: { article: attributes_with_title_blank }, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
 
     context "when body is nil" do
       it "returns http 422" do
-        post "/api/blog/v1/articles", params: { article: attributes_with_body_blank }
+        post "/api/blog/v1/articles", params: { article: attributes_with_body_blank }, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
 
     context "when user is nil" do
       it "returns http 422" do
-        post "/api/blog/v1/articles", params: { article: attributes_with_user_blank }
+        post "/api/blog/v1/articles", params: { article: attributes_with_user_blank }, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
 
     context "when everthing good" do
       it "returns http 200" do
-        post "/api/blog/v1/articles", params: { article: valid_attributes }
+        post "/api/blog/v1/articles", params: { article: valid_attributes }, as: :json
         expect(response).to have_http_status(:created)
       end
     end
@@ -87,21 +87,21 @@ RSpec.describe "Api::Blog::V1::Articles", type: :request do
 
     context "when title is nil" do
       it "returns http 422" do
-        patch "/api/blog/v1/articles/#{article.id}", params: { article: attributes_with_title_blank }
+        patch "/api/blog/v1/articles/#{article.id}", params: { article: attributes_with_title_blank }, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
 
     context "when body is nil" do
       it "returns http 422" do
-        patch "/api/blog/v1/articles/#{article.id}", params: { article: attributes_with_body_blank }
+        patch "/api/blog/v1/articles/#{article.id}", params: { article: attributes_with_body_blank }, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
 
     context "when everthing good" do
       it "returns http 200" do
-        patch "/api/blog/v1/articles/#{article.id}", params: { article: valid_attributes }
+        patch "/api/blog/v1/articles/#{article.id}", params: { article: valid_attributes }, as: :json
         expect(response).to have_http_status(:ok)
       end
     end

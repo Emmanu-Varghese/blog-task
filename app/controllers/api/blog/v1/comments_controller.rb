@@ -2,49 +2,62 @@ module Api
   module Blog
     module V1
       # :nodoc:
-      class ArticlesController < ApplicationController
-        before_action :set_article, only: %i[show update destroy]
+      class CommentsController < ApplicationController
+        before_action :verify_and_set_article
+        before_action :set_comment, only: %i[show update destroy]
 
-        # GET /articles/1
+        # GET /comments
+        def index
+          render json: @article.comments
+        end
+
+        # GET /comments/1
         def show
-          render json: @article
+          render json: @comment
         end
 
-        # POST /articles
+        # POST /comments
         def create
-          @article = Article.new(article_params)
+          @comment = Comment.new(comment_params)
 
-          if @article.save
-            render json: @article, status: :created, location: @article
+          if @comment.save
+            render json: @comment, status: :created, location: @comment
           else
-            render json: @article.errors, status: :unprocessable_entity
+            render json: @comment.errors, status: :unprocessable_entity
           end
         end
 
-        # PATCH/PUT /articles/1
+        # PATCH/PUT /comments/1
         def update
-          if @article.update(article_params)
-            render json: @article
+          if @comment.update(comment_params)
+            render json: @comment
           else
-            render json: @article.errors, status: :unprocessable_entity
+            render json: @comment.errors, status: :unprocessable_entity
           end
         end
 
-        # DELETE /articles/1
+        # DELETE /comments/1
         def destroy
-          @article.destroy
+          @comment.destroy
         end
 
         private
 
         # Use callbacks to share common setup or constraints between actions.
-        def set_article
-          @article = Article.find(params[:id])
+        def set_comment
+          @comment = Comment.find(params[:id])
         end
 
         # Only allow a list of trusted parameters through.
-        def article_params
-          params.require(:article).permit(:title, :body, :user_id)
+        def comment_params
+          params.require(:comment).permit(:user_id, :body, :commentable_id, :commentable_type).merge(commentable_id: params[:article_id])
+        end
+
+        def verify_and_set_article
+          @article = Article.find(params[:article_id].to_i)
+          return true unless @article.nil?
+
+          render json: "Article not found", status: :unprocessable_entity
         end
       end
     end
