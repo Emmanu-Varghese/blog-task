@@ -4,8 +4,8 @@ require "rails_helper"
 
 RSpec.describe "Api::Blog::V1::Comments", type: :request do
   let!(:user) { create(:user) }
-  let!(:article) { create(:article) }
-  let!(:comment) { create(:comment) }
+  let!(:article) { create(:article, user: user) }
+  let!(:comment) { create(:comment, commentable: article) }
 
   let(:valid_attributes) {
     { body: "MyText", commentable_type: "Article", user_id: user.id }
@@ -21,6 +21,13 @@ RSpec.describe "Api::Blog::V1::Comments", type: :request do
 
   # Fetch / list all comments for a post together with the reactions on these comments
   describe "GET /api/blog/v1/users/:user_id/articles/:article_id/comments" do
+    context "when user id is invalid" do
+      it "returns http 404" do
+        get "/api/blog/v1/users/#{rand(100...400)}/articles/#{article.id}/comments", as: :json
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+
     context "when article id is invalid" do
       it "returns http 404" do
         get "/api/blog/v1/users/#{user.id}/articles/#{rand(100...400)}/comments", as: :json

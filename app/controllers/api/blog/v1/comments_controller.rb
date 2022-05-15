@@ -4,8 +4,8 @@ module Api
       # :nodoc:
       class CommentsController < ApplicationController
         protect_from_forgery with: :null_session, if: Proc.new {|c| c.request.format.json? }
-        before_action :verify_and_set_user
-        before_action :verify_and_set_article
+        
+        before_action :verify_and_set_params
         before_action :verify_and_set_comment, except: %i[index create]
 
         # GET /comments
@@ -59,9 +59,17 @@ module Api
 
         private
 
+        def verify_and_set_params
+          @user = User.find_by(id: params[:user_id].to_i)
+          head :not_found and return if @user.nil?
+
+          @article = Article.find_by(id: params[:article_id], user_id: @user.id)
+          head :not_found and return if @article.nil?
+        end
+
         # Use callbacks to share common setup or constraints between actions.
         def verify_and_set_comment
-          @comment = Comment.find_by(id: params[:id])
+          @comment = Comment.find_by(id: params[:id], commentable_type: "Article", commentable_id: @article.id)
           return true unless @comment.nil?
 
           head :not_found
@@ -70,20 +78,6 @@ module Api
         # Only allow a list of trusted parameters through.
         def comment_params
           params.require(:comment).permit(:user_id, :body, :commentable_id, :commentable_type)
-        end
-
-        def verify_and_set_article
-          @article = Article.find_by(id: params[:article_id])
-          return true unless @article.nil?
-
-          head :not_found
-        end
-
-        def verify_and_set_user
-          @user = User.find_by(id: params[:user_id].to_i)
-          return true unless @user.nil?
-
-          head :not_found
         end
       end
     end

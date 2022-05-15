@@ -44,17 +44,17 @@ module Api
 
         private
 
-        # Use callbacks to share common setup or constraints between actions.
-        def verify_and_set_article
-          @article = Article.find_by(id: params[:id])
-          return true unless @article.nil?
+        def verify_and_set_user
+          @user = User.find_by(id: params[:user_id].to_i)
+          return true unless @user.nil?
 
           head :not_found
         end
 
-        def verify_and_set_user
-          @user = User.find_by(id: params[:user_id].to_i)
-          return true unless @user.nil?
+        # Use callbacks to share common setup or constraints between actions.
+        def verify_and_set_article
+          @article = Article.find_by(id: params[:id], user_id: @user.id)
+          return true unless @article.nil?
 
           head :not_found
         end

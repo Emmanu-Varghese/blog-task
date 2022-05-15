@@ -25,18 +25,4 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end
-
-  def process(action, *args)
-    super
-  rescue AbstractController::ActionNotFound => e
-    respond_to do |format|
-      format.html { redirect_to root_path, alert: e.message }
-      format.json { render json: e.message, status: :unprocessable_entity }
-    end
-  rescue ActiveRecord::RecordNotFound => e
-    respond_to do |format|
-      format.html { redirect_to root_path, alert: e.message }
-      format.json { render json: e.message, status: :unprocessable_entity }
-    end
-  end
 end
