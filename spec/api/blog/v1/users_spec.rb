@@ -9,9 +9,9 @@ RSpec.describe "Api::Blog::V1::Users", type: :request do
   # Fetch / list all posts made by one user
   describe "GET /users/:user_id/articles" do
     context "when user id is invalid" do
-      it "returns http 422" do
+      it "returns http 404" do
         get "/api/blog/v1/users/#{rand(100...400)}/articles", as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:not_found)
       end
     end
 

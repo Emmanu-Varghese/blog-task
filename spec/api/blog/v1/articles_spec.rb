@@ -25,15 +25,15 @@ RSpec.describe "Api::Blog::V1::Articles", type: :request do
   describe "GET /api/blog/v1/articles/:article_id" do
     context "when article id is nil" do
       it "returns http 422" do
-        get "/api/blog/v1/articles/nil", as: :json
+        get "/api/blog/v1/articles/#{nil}", as: :json
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
 
     context "when article doesn't exist" do
-      it "returns http 422" do
+      it "returns http 404" do
         get "/api/blog/v1/articles/#{rand(10...40)}", as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:not_found)
       end
     end
 
@@ -79,9 +79,9 @@ RSpec.describe "Api::Blog::V1::Articles", type: :request do
   # # Update article
   describe "PATCH /:article_id" do
     context "when article id is invalid" do
-      it "returns http 422" do
+      it "returns http 404" do
         patch "/api/blog/v1/articles/#{rand(10...40)}", as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:not_found)
       end
     end
 
@@ -110,9 +110,9 @@ RSpec.describe "Api::Blog::V1::Articles", type: :request do
   # # Delete article
   describe "DELETE /:article_id" do
     context "when article id is invalid" do
-      it "returns http 422" do
+      it "returns http 404" do
         delete "/api/blog/v1/articles/#{rand(10...40)}", as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:not_found)
       end
     end
 

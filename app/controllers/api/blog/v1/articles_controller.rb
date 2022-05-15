@@ -3,7 +3,7 @@ module Api
     module V1
       # :nodoc:
       class ArticlesController < ApplicationController
-        before_action :set_article, only: %i[show update destroy]
+        before_action :verify_and_set_article, only: %i[show update destroy]
 
         # GET /articles/1
         def show
@@ -38,8 +38,11 @@ module Api
         private
 
         # Use callbacks to share common setup or constraints between actions.
-        def set_article
-          @article = Article.find(params[:id])
+        def verify_and_set_article
+          @article = Article.find_by(id: params[:id])
+          return true unless @article.nil?
+
+          head :not_found
         end
 
         # Only allow a list of trusted parameters through.

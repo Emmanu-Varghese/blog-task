@@ -16,7 +16,7 @@ module Api
           @user = User.find_by(id: params[:id].to_i)
           return true unless @user.nil?
 
-          render json: "User not found", status: :unprocessable_entity
+          head :not_found
         end
       end
     end

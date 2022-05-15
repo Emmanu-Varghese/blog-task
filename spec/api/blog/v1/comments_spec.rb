@@ -22,9 +22,9 @@ RSpec.describe "Api::Blog::V1::Comments", type: :request do
   # Fetch / list all comments for a post together with the reactions on these comments
   describe "GET /:article_id/comments" do
     context "when article id is invalid" do
-      it "returns http 422" do
+      it "returns http 404" do
         get "/api/blog/v1/articles/#{rand(100...400)}/comments", as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:not_found)
       end
     end
 
@@ -39,9 +39,9 @@ RSpec.describe "Api::Blog::V1::Comments", type: :request do
   # Create comment
   describe "POST /api/blog/v1/articles/:article_id/comments" do
     context "when article id is invalid" do
-      it "returns http 422" do
+      it "returns http 404" do
         post "/api/blog/v1/articles/#{rand(100...400)}/comments", params: { comment: valid_attributes }, as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:not_found)
       end
     end
 
@@ -70,18 +70,18 @@ RSpec.describe "Api::Blog::V1::Comments", type: :request do
   # # Update comment
   describe "PATCH /api/blog/v1/articles/:article_id/comments/:comment_id" do
     context "when article id is invalid" do
-      it "returns http 422" do
+      it "returns http 404" do
         patch "/api/blog/v1/articles/#{rand(100...400)}/comments/#{comment.id}", params: { comment: valid_attributes },
                                                                                  as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:not_found)
       end
     end
 
     context "when comment id is invalid" do
-      it "returns http 422" do
+      it "returns http 404" do
         patch "/api/blog/v1/articles/#{article.id}/comments/#{rand(100...400)}", params: { comment: valid_attributes },
                                                                                  as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:not_found)
       end
     end
 
@@ -105,14 +105,14 @@ RSpec.describe "Api::Blog::V1::Comments", type: :request do
   # # Delete comment
   describe "DELETE /api/blog/v1/articles/:article_id/comments/:comment_id" do
     context "when article id is invalid" do
-      it "returns http 422" do
+      it "returns http 404" do
         delete "/api/blog/v1/articles/#{article.id}/comments/#{rand(100...400)}", as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:not_found)
       end
     end
 
     context "when everthing good" do
-      it "returns http 200" do
+      it "returns http 201" do
         delete "/api/blog/v1/articles/#{article.id}/comments/#{comment.id}", as: :json
         expect(response).to have_http_status(:no_content)
       end
@@ -122,68 +122,68 @@ RSpec.describe "Api::Blog::V1::Comments", type: :request do
   # Comment add reactions
   describe "GET /api/blog/v1/articles/:article_id/comments/:id/emote?emote=:emoji&user_id=:user_id" do
     context "when article id is invalid" do
-      it "returns http 422" do
+      it "returns http 404" do
         get "/api/blog/v1/articles/#{rand(100...400)}/comments/#{comment.id}/add-emote?emote=like&user_id=#{user.id}",
             as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:not_found)
       end
     end
 
     context "when comment id is invalid" do
-      it "returns http 422" do
+      it "returns http 404" do
         get "/api/blog/v1/articles/#{article.id}/comments/#{rand(100...400)}/add-emote?emote=like&user_id=#{user.id}",
             as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:not_found)
       end
     end
 
     context "when user id is invalid" do
-      it "returns http 422" do
+      it "returns http 404" do
         get "/api/blog/v1/articles/#{comment.commentable.id}/comments/#{comment.id}/add-emote?emote=like&user_id=#{rand(100...400)}",
             as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:not_found)
       end
     end
 
     context "when user reacts to a comment" do
-      it "returns http 422" do
-        get "/api/blog/v1/articles/#{comment.commentable.id}/comments/#{comment.id}/add-emote?emote=like&user_id=#{rand(100...400)}",
+      it "returns http 200" do
+        get "/api/blog/v1/articles/#{comment.commentable.id}/comments/#{comment.id}/add-emote?emote=like&user_id=#{user.id}",
             as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:ok)
       end
     end
   end
 
     describe "GET /api/blog/v1/articles/:article_id/comments/:id/emote?emote=:emoji&user_id=:user_id" do
     context "when article id is invalid" do
-      it "returns http 422" do
+      it "returns http 404" do
         get "/api/blog/v1/articles/#{rand(100...400)}/comments/#{comment.id}/remove-emote?emote=like&user_id=#{user.id}",
             as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:not_found)
       end
     end
 
     context "when comment id is invalid" do
-      it "returns http 422" do
+      it "returns http 404" do
         get "/api/blog/v1/articles/#{article.id}/comments/#{rand(100...400)}/remove-emote?emote=like&user_id=#{user.id}",
             as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:not_found)
       end
     end
 
     context "when user id is invalid" do
-      it "returns http 422" do
+      it "returns http 404" do
         get "/api/blog/v1/articles/#{comment.commentable.id}/comments/#{comment.id}/remove-emote?emote=like&user_id=#{rand(100...400)}",
             as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:not_found)
       end
     end
 
     context "when user reacts to a comment" do
-      it "returns http 422" do
-        get "/api/blog/v1/articles/#{comment.commentable.id}/comments/#{comment.id}/remove-emote?emote=like&user_id=#{rand(100...400)}",
+      it "returns http 200" do
+        get "/api/blog/v1/articles/#{comment.commentable.id}/comments/#{comment.id}/remove-emote?emote=like&user_id=#{user.id}",
             as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:ok)
       end
     end
   end
