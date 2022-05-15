@@ -16,7 +16,7 @@ RSpec.describe "Articles" do
   context "when user creates a new article with empty title" do
     it "shows the error message" do
       visit "/articles/new"
-      find(:css, "#article_body").click.set(Faker::Lorem.words(number: rand(2..5)).join(" "))
+      fill_in "article_body", with: Faker::Lorem.words(number: rand(2..5)).join(" ")
       click_button "Create Article"
       sleep(1)
       expect(page).to have_content("Title can't be blank")
@@ -37,7 +37,7 @@ RSpec.describe "Articles" do
     it "redirect to article show page" do
       visit "/articles/new"
       fill_in "article_title", with: Faker::Lorem.words(number: rand(2..5)).join(" ")
-      find(:css, "#article_body").click.set(Faker::Lorem.words(number: rand(2..5)).join(" "))
+      fill_in "article_body", with: Faker::Lorem.words(number: rand(2..5)).join(" ")
       click_button "Create Article"
       sleep(1)
       expect(page).to have_current_path(article_path(Article.last))
@@ -48,7 +48,7 @@ RSpec.describe "Articles" do
     it "shows the updated article title" do
       visit "/articles/new"
       fill_in "article_title", with: Faker::Lorem.words(number: rand(2..5)).join(" ")
-      find(:css, "#article_body").click.set(Faker::Lorem.words(number: rand(2..5)).join(" "))
+      fill_in "article_body", with: Faker::Lorem.words(number: rand(2..5)).join(" ")
       click_button "Create Article"
       sleep(1)
       expect(page).to have_current_path(article_path(Article.last))

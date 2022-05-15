@@ -22,7 +22,7 @@ RSpec.describe "Api::Blog::V1::Articles", type: :request do
   }
 
   # Fetch / list all posts made by one user
-  describe "GET /api/blog/v1/users/:user_id/articles/:article_id" do
+  describe "GET /api/blog/v1/users/:user_id/articles" do
     context "when user doesn't exist" do
       it "returns http 404" do
         get "/api/blog/v1/users/#{rand(100...400)}/articles", as: :json
@@ -104,14 +104,16 @@ RSpec.describe "Api::Blog::V1::Articles", type: :request do
 
     context "when title is nil" do
       it "returns http 422" do
-        patch "/api/blog/v1/users/#{user.id}/articles/#{article.id}", params: { article: attributes_with_title_blank }, as: :json
+        patch "/api/blog/v1/users/#{user.id}/articles/#{article.id}", params: { article: attributes_with_title_blank },
+                                                                      as: :json
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
 
     context "when body is nil" do
       it "returns http 422" do
-        patch "/api/blog/v1/users/#{user.id}/articles/#{article.id}", params: { article: attributes_with_body_blank }, as: :json
+        patch "/api/blog/v1/users/#{user.id}/articles/#{article.id}", params: { article: attributes_with_body_blank },
+                                                                      as: :json
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end

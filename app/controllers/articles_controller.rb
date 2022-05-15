@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
   # GET /articles or /articles.json
   def index
     articles = filter!(Article)
-    @pagy, @articles = pagy(articles.order(created_at: :desc))
+    @pagy, @articles = pagy(articles.includes(:user).order(created_at: :desc))
   end
 
   # GET /articles/1 or /articles/1.json
