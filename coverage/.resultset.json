@@ -683,14 +683,14 @@
           1,
           null,
           1,
-          463,
-          463,
+          465,
+          465,
           null,
           null,
-          390,
+          391,
           null,
           1,
-          389,
+          390,
           null,
           null
         ]
@@ -735,10 +735,10 @@
           3,
           45,
           null,
-          45,
+          46,
           null,
           1,
-          44,
+          45,
           null,
           null,
           null,
@@ -861,13 +861,14 @@
           null
         ]
       },
-      "/home/emmanu/Workspace/blog-task/spec/requests/announcements_controller_spec.rb": {
+      "/home/emmanu/Workspace/blog-task/spec/requests/announcements_spec.rb": {
         "lines": [
           1,
           null,
           1,
-          1,
-          1,
+          null,
+          null,
+          null,
           1,
           1,
           null,
@@ -879,73 +880,6 @@
           1,
           null,
           null,
-          null,
-          null,
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      "/home/emmanu/Workspace/blog-task/app/controllers/announcements_controller.rb": {
-        "lines": [
-          1,
-          1,
-          null,
-          1,
-          11,
-          null,
-          1,
-          null,
-          null,
-          null,
-          1,
-          null,
-          1,
-          1,
-          null,
-          null
-        ]
-      },
-      "/home/emmanu/Workspace/blog-task/app/controllers/application_controller.rb": {
-        "lines": [
-          1,
-          1,
-          null,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          2,
-          1,
-          1,
-          null,
-          null,
-          null,
-          1,
-          null,
-          1,
-          219,
-          null,
-          null,
-          1,
-          87,
-          87,
           null,
           null
         ]
@@ -1312,8 +1246,8 @@
           null,
           null,
           1,
-          44,
-          44,
+          45,
+          45,
           null,
           null,
           null,
@@ -1379,21 +1313,53 @@
           null
         ]
       },
+      "/home/emmanu/Workspace/blog-task/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          218,
+          null,
+          null,
+          1,
+          87,
+          87,
+          null,
+          null
+        ]
+      },
       "/home/emmanu/Workspace/blog-task/app/controllers/concerns/filterable.rb": {
         "lines": [
           1,
           1,
-          44,
+          45,
           null,
           null,
           1,
           null,
           1,
-          44,
+          45,
           null,
           null,
           1,
-          44,
+          45,
           null,
           null
         ]
@@ -1521,13 +1487,13 @@
           1,
           null,
           1,
-          121,
-          121,
-          121,
-          121,
-          121,
+          122,
+          122,
+          122,
+          122,
+          122,
           null,
-          121,
+          122,
           null,
           101,
           101,
@@ -1564,6 +1530,23 @@
           69,
           null,
           null,
+          null,
+          null
+        ]
+      },
+      "/home/emmanu/Workspace/blog-task/app/controllers/announcements_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          9,
+          null,
+          null,
+          1,
+          null,
+          1,
+          1,
           null,
           null
         ]
@@ -1718,6 +1701,6 @@
         ]
       }
     },
-    "timestamp": 1652586574
+    "timestamp": 1652594024
   }
 }

@@ -3,9 +3,6 @@ class AnnouncementsController < ApplicationController
 
   def index
     @pagy, @announcements = pagy(Announcement.order(published_at: :desc))
-  rescue StandardError => e
-    Rails.logger.error "Error happened while viewing announcements "\
-                       "#{e.message}"
   end
 
   private
