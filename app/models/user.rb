@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   scope :admin, -> { where(admin: true) }
 
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
+  devise :database_authenticatable, :registerable, :rememberable, :validatable
   attr_readonly :email
   validates :name, presence: true
 

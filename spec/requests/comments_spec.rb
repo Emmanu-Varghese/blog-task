@@ -26,21 +26,6 @@ RSpec.describe "/comments", type: :request do
     { commentable_type: nil, commentable_id: create(:article).id, user_id: user.id }
   }
 
-  describe "GET /index" do
-    it "renders a successful response" do
-      Comment.create! valid_attributes
-      get comments_url
-      expect(response).to be_successful
-    end
-  end
-
-  describe "GET /show" do
-    it "renders a successful response" do
-      comment = Comment.create! valid_attributes
-      get comment_url(comment)
-      expect(response).to be_successful
-    end
-  end
 
   describe "GET /new" do
     before do
