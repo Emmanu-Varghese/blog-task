@@ -9,9 +9,6 @@ User.create!(name: "Emmanu Varghese", email: "emmanuvarghese@gmail.com", passwor
 5.times do |i|
 	User.create!(name: Faker::Name.name, email: Faker::Internet.email, password: Faker::Internet.password)
 end
-10.times do |i|
-	Announcement.create!(announcement_type: 'new', name: Faker::Name.name, description: Faker::Lorem.words(number: rand(2..10)).join(" "))
-end
 
 users = User.all.pluck(:id)
 15.times do
