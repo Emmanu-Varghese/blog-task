@@ -70,7 +70,7 @@ RSpec.describe "Api::Blog::V1::Comments", type: :request do
   end
 
   # # Update comment
-  describe "PATCH /:article_id/comments/:comment_id" do
+  describe "PATCH /api/blog/v1/articles/:article_id/comments/:comment_id" do
     context "when article id is invalid" do
       it "returns http 422" do
         patch "/api/blog/v1/articles/#{rand(100...400)}/comments/#{comment.id}", params: { comment: valid_attributes }, as: :json
@@ -101,7 +101,7 @@ RSpec.describe "Api::Blog::V1::Comments", type: :request do
   end
 
   # # Delete comment
-  describe "DELETE /:article_id/comments/:comment_id" do
+  describe "DELETE /api/blog/v1/articles/:article_id/comments/:comment_id" do
     context "when article id is invalid" do
       it "returns http 422" do
         delete "/api/blog/v1/articles/#{article.id}/comments/#{rand(100...400)}", as: :json

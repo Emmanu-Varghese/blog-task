@@ -8,12 +8,7 @@ module Api
 
         # GET /comments
         def index
-          render json: @article.comments
-        end
-
-        # GET /comments/1
-        def show
-          render json: @comment
+          render json: @article.comments, each_serializer: CommentSerializer
         end
 
         # POST /comments
@@ -54,7 +49,7 @@ module Api
         end
 
         def verify_and_set_article
-          @article = Article.find(params[:article_id].to_i)
+          @article = Article.find_by_id(params[:article_id].to_i)
           return true unless @article.nil?
 
           render json: "Article not found", status: :unprocessable_entity
