@@ -2,7 +2,22 @@
 
 require "rails_helper"
 
-RSpec.describe Api::Blog::V1::Comments, type: :request do
+RSpec.describe "Api::Blog::V1::Comments", type: :request do
+  let!(:comment) { create(:comment) }
+  let!(:user) { create(:user) }
+  
+  let(:valid_attributes) {
+    { body: "MyText", commentable_type: "Article", commentable_id: 25, user_id: user.id }
+  }
+
+  let(:attributes_with_body_blank) {
+    { body: nil, commentable_type: "Article", commentable_id: 25, user_id: user.id }
+  }
+
+  let(:attributes_with_user_blank) {
+    { body: "MyText", commentable_type: "Article", commentable_id: 25, user_id: nil }
+  }
+
   # Fetch / list all comments for a post together with the reactions on these comments
   describe "GET /:article_id/comments/:comment_id" do
     context "when article id is nil" do

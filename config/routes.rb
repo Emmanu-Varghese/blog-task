@@ -23,10 +23,8 @@ Rails.application.routes.draw do
             get :articles
           end
         end
-        resources :articles do
-        end
-        resources :comments do
-        end
+        resources :articles
+        resources :comments
       end
     end
   end

@@ -1,5 +1,7 @@
 class Comment < ApplicationRecord
   include ActionView::RecordIdentifier
+
+  attr_readonly :user_id
   validates :body, presence: true
   belongs_to :commentable, polymorphic: true
   belongs_to :user

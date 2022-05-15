@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe Api::Blog::V1::Users, type: :request do
+RSpec.describe "Api::Blog::V1::Users", type: :request do
   let!(:user) { create(:user) }
 
   # Fetch / list all posts made by one user
