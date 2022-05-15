@@ -950,35 +950,6 @@
           null
         ]
       },
-      "/home/emmanu/Workspace/blog-task/spec/models/page_spec.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          null,
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          null,
-          null
-        ]
-      },
-      "/home/emmanu/Workspace/blog-task/app/models/page.rb": {
-        "lines": [
-          1,
-          4,
-          1,
-          null
-        ]
-      },
       "/home/emmanu/Workspace/blog-task/spec/models/user_spec.rb": {
         "lines": [
           null,
@@ -1496,14 +1467,6 @@
           1,
           null,
           null,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          null,
-          null,
           null
         ]
       },
@@ -1511,14 +1474,6 @@
         "lines": [
           1,
           1,
-          1,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          null,
           1,
           null,
           null,
@@ -1963,6 +1918,6 @@
         ]
       }
     },
-    "timestamp": 1652657727
+    "timestamp": 1652658140
   }
 }
