@@ -85,3 +85,4 @@ gem "rubocop-rspec", require: false
 gem "pagy", "~> 5.10"
 gem "view_component", "~> 2.51"
 gem "terser", "~> 1.1", ">= 1.1.1"
+gem "active_model_serializers"
