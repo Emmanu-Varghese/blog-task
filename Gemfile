@@ -60,15 +60,6 @@ group :development, :test do
 end
 
 group :development do
-  # Use console on exceptions pages [https://github.com/rails/web-console]
-  gem "web-console"
-
-  # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  # gem "rack-mini-profiler"
-
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
-
   gem "brakeman"
 end
 
@@ -78,26 +69,19 @@ group :test do
   gem "webmock"
   gem "rails-controller-testing"
 end
+
 gem "cssbundling-rails"
 gem "devise", "~> 4.8", ">= 4.8.0"
+gem "responders", github: "heartcombo/responders"
 gem "cancancan"
-gem "friendly_id", "~> 5.4"
 gem "jsbundling-rails"
 
 gem "name_of_person", "~> 1.1"
 gem "noticed", "~> 1.4"
-gem "pretender", "~> 0.3.4"
-gem "pundit", "~> 2.1"
 gem "sidekiq", "~> 6.2"
-gem "sitemap_generator", "~> 6.1"
-gem "whenever", require: false
-gem "responders", github: "heartcombo/responders", branch: "main"
-gem "rexml", "~> 3.2", ">= 3.2.4"
 gem "rubocop-rails", require: false
 gem "rubocop-performance", require: false
 gem "rubocop-rspec", require: false
 gem "pagy", "~> 5.10"
 gem "view_component", "~> 2.51"
-
-gem "dotenv-rails", groups: [:development, :test]
 gem "terser", "~> 1.1", ">= 1.1.1"
