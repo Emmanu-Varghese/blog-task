@@ -1,7 +1,7 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
-  resources :comments do
+  resources :comments, except: [:index, :show]  do
     resource :emote, only: :show
   end
   resources :articles
