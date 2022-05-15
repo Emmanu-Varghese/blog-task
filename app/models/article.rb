@@ -1,6 +1,7 @@
 class Article < ApplicationRecord
   FILTER_PARAMS = %i[user_id].freeze
 
+  attr_readonly :user_id
   validates :title, :body, presence: true
 
   belongs_to :user

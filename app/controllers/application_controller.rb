@@ -1,6 +1,4 @@
 class ApplicationController < ActionController::Base
-  impersonates :user
-  include Pundit::Authorization
   include Pagy::Backend
 
   protect_from_forgery with: :exception
