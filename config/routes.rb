@@ -24,7 +24,12 @@ Rails.application.routes.draw do
           end
         end
         resources :articles do
-          resources :comments
+          resources :comments do
+            member do
+              get :add_emote, path: "add-emote"
+              get :remove_emote, path: "remove-emote"
+            end
+          end
         end
       end
     end

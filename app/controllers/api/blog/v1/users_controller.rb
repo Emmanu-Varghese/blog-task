@@ -10,11 +10,10 @@ module Api
           render json: @user.articles, each_serializer: ArticleSerializer
         end
 
-
         private
 
         def verify_and_set_user
-          @user = User.find_by_id(params[:id].to_i)
+          @user = User.find_by(id: params[:id].to_i)
           return true unless @user.nil?
 
           render json: "User not found", status: :unprocessable_entity

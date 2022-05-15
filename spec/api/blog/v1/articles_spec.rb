@@ -25,7 +25,7 @@ RSpec.describe "Api::Blog::V1::Articles", type: :request do
   describe "GET /api/blog/v1/articles/:article_id" do
     context "when article id is nil" do
       it "returns http 422" do
-        get "/api/blog/v1/articles/#{nil}", as: :json
+        get "/api/blog/v1/articles/nil", as: :json
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
