@@ -19,15 +19,12 @@ Rails.application.routes.draw do
     namespace :blog do
       namespace :v1 do
         resources :users, only: [] do
-          member do
-            get :articles
-          end
-        end
-        resources :articles do
-          resources :comments do
-            member do
-              get :add_emote, path: "add-emote"
-              get :remove_emote, path: "remove-emote"
+          resources :articles do
+            resources :comments do
+              member do
+                get :add_emote, path: "add-emote"
+                get :remove_emote, path: "remove-emote"
+              end
             end
           end
         end

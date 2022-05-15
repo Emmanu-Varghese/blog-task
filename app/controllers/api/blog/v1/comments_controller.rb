@@ -3,6 +3,8 @@ module Api
     module V1
       # :nodoc:
       class CommentsController < ApplicationController
+        protect_from_forgery with: :null_session, if: Proc.new {|c| c.request.format.json? }
+        before_action :verify_and_set_user
         before_action :verify_and_set_article
         before_action :verify_and_set_comment, except: %i[index create]
 
@@ -37,19 +39,19 @@ module Api
         end
 
         def add_emote
-          @user = User.find_by(id: params[:user_id])
+          @user = User.find_by(id: params[:reacting_user_id])
           head :not_found and return if @user.nil?
 
-          emote = @user.emotes.find_or_initialize_by(comment: @comment, emoji: params[:emote])
+          emote = @user.emotes.find_or_initialize_by(comment: @comment, emoji: "#{params[:emote]}.png")
           emote.save and @comment.touch if emote.new_record?
           head :ok
         end
 
         def remove_emote
-          @user = User.find_by(id: params[:user_id])
+          @user = User.find_by(id: params[:reacting_user_id])
           head :not_found and return if @user.nil?
 
-          emote = @user.emotes.find_by(comment: @comment, emoji: params[:emote])
+          emote = @user.emotes.find_by(comment: @comment, emoji: "#{params[:emote]}.png")
           emote&.destroy
           @comment.touch
           head :ok
@@ -73,6 +75,13 @@ module Api
         def verify_and_set_article
           @article = Article.find_by(id: params[:article_id])
           return true unless @article.nil?
+
+          head :not_found
+        end
+
+        def verify_and_set_user
+          @user = User.find_by(id: params[:user_id].to_i)
+          return true unless @user.nil?
 
           head :not_found
         end

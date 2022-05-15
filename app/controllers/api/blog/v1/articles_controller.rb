@@ -3,7 +3,14 @@ module Api
     module V1
       # :nodoc:
       class ArticlesController < ApplicationController
+        protect_from_forgery with: :null_session, if: Proc.new {|c| c.request.format.json? }
+        before_action :verify_and_set_user
         before_action :verify_and_set_article, only: %i[show update destroy]
+
+        # GET /articles
+        def index
+          render json: @user.articles, each_serializer: ArticleSerializer
+        end
 
         # GET /articles/1
         def show
@@ -41,6 +48,13 @@ module Api
         def verify_and_set_article
           @article = Article.find_by(id: params[:id])
           return true unless @article.nil?
+
+          head :not_found
+        end
+
+        def verify_and_set_user
+          @user = User.find_by(id: params[:user_id].to_i)
+          return true unless @user.nil?
 
           head :not_found
         end
