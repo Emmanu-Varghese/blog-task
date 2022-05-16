@@ -3,20 +3,20 @@ class Comment < ApplicationRecord
 
   attr_readonly :user_id
   validates :body, presence: true
-  belongs_to :commentable, polymorphic: true
+  belongs_to :article
   belongs_to :user
 
   has_many :emotes, dependent: :destroy
 
   after_create_commit do
-    broadcast_append_to [commentable, :comments],
-                        target: "#{dom_id(commentable)}_comments"
+    broadcast_append_to [article, :comments],
+                        target: "#{dom_id(article)}_comments"
   end
   after_update_commit do
-    broadcast_replace_to [commentable, :comments]
+    broadcast_replace_to [article, :comments]
   end
   after_destroy_commit do
-    broadcast_remove_to [commentable, :comments]
+    broadcast_remove_to [article, :comments]
   end
   # broadcasts_to ->(_comment) { :comments }
 

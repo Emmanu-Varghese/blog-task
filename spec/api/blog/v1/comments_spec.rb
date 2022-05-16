@@ -5,18 +5,18 @@ require "rails_helper"
 RSpec.describe "Api::Blog::V1::Comments", type: :request do
   let!(:user) { create(:user) }
   let!(:article) { create(:article, user: user) }
-  let!(:comment) { create(:comment, commentable: article) }
+  let!(:comment) { create(:comment, article: article) }
 
   let(:valid_attributes) {
-    { body: "MyText", commentable_type: "Article", user_id: user.id }
+    { body: "MyText", article_id: article.id, user_id: user.id }
   }
 
   let(:attributes_with_body_blank) {
-    { body: nil, commentable_type: "Article", user_id: user.id }
+    { body: nil, article_id: article.id, user_id: user.id }
   }
 
   let(:attributes_with_user_blank) {
-    { body: "MyText", commentable_type: "Article", user_id: nil }
+    { body: "MyText", article_id: article.id, user_id: nil }
   }
 
   # Fetch / list all comments for a post together with the reactions on these comments
@@ -157,7 +157,7 @@ RSpec.describe "Api::Blog::V1::Comments", type: :request do
 
     context "when user id is invalid" do
       it "returns http 404" do
-        get "/api/blog/v1/users/#{user.id}/articles/#{comment.commentable.id}/comments/#{comment.id}/add-emote?"\
+        get "/api/blog/v1/users/#{user.id}/articles/#{comment.article.id}/comments/#{comment.id}/add-emote?"\
             "emote=like&reacting_user_id=#{rand(100...400)}",
             as: :json
         expect(response).to have_http_status(:not_found)
@@ -166,7 +166,7 @@ RSpec.describe "Api::Blog::V1::Comments", type: :request do
 
     context "when user reacts to a comment" do
       it "returns http 200" do
-        get "/api/blog/v1/users/#{user.id}/articles/#{comment.commentable.id}/comments/#{comment.id}/add-emote?"\
+        get "/api/blog/v1/users/#{user.id}/articles/#{comment.article.id}/comments/#{comment.id}/add-emote?"\
             "emote=like&reacting_user_id=#{user.id}",
             as: :json
         expect(response).to have_http_status(:ok)
@@ -196,7 +196,7 @@ RSpec.describe "Api::Blog::V1::Comments", type: :request do
 
     context "when user id is invalid" do
       it "returns http 404" do
-        get "/api/blog/v1/users/#{user.id}/articles/#{comment.commentable.id}/comments/#{comment.id}/remove-emote?"\
+        get "/api/blog/v1/users/#{user.id}/articles/#{comment.article.id}/comments/#{comment.id}/remove-emote?"\
             "emote=like&reacting_user_id=#{rand(100...400)}",
             as: :json
         expect(response).to have_http_status(:not_found)
@@ -205,7 +205,7 @@ RSpec.describe "Api::Blog::V1::Comments", type: :request do
 
     context "when user reacts to a comment" do
       it "returns http 200" do
-        get "/api/blog/v1/users/#{user.id}/articles/#{comment.commentable.id}/comments/#{comment.id}/remove-emote?"\
+        get "/api/blog/v1/users/#{user.id}/articles/#{comment.article.id}/comments/#{comment.id}/remove-emote?"\
             "emote=like&reacting_user_id=#{user.id}",
             as: :json
         expect(response).to have_http_status(:ok)

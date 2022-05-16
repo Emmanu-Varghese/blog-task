@@ -5,7 +5,7 @@ class Article < ApplicationRecord
   validates :title, :body, presence: true
 
   belongs_to :user
-  has_many :comments, as: :commentable, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   after_update_commit ->(_article) { broadcast_replace_to :articles, partial: "articles/article_preview" }
   after_destroy_commit ->(_article) { broadcast_remove_to :articles }

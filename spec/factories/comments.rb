@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :comment do
-    commentable { create(:article) }
+    article
     body { Faker::Lorem.words(number: rand(2..10)).join(" ") }
     user
   end

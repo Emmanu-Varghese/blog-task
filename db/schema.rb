@@ -21,13 +21,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_14_031037) do
   end
 
   create_table "comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "commentable_type", null: false
-    t.bigint "commentable_id", null: false
+    t.bigint "article_id", null: false
     t.bigint "user_id", null: false
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
+    t.index ["article_id"], name: "index_comments_on_article_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -39,14 +38,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_14_031037) do
     t.datetime "updated_at", null: false
     t.index ["comment_id"], name: "index_emotes_on_comment_id"
     t.index ["user_id"], name: "index_emotes_on_user_id"
-  end
-
-  create_table "pages", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "title"
-    t.text "body"
-    t.boolean "deleted", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -66,6 +57,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_14_031037) do
   end
 
   add_foreign_key "articles", "users"
+  add_foreign_key "comments", "articles"
   add_foreign_key "comments", "users"
   add_foreign_key "emotes", "comments"
   add_foreign_key "emotes", "users"
