@@ -16,7 +16,7 @@
   <%= form_with url: articles_path, method: :get, data: { controller: "search-form", search_form_target: "form", turbo_frame: "articles" } do |form| %>
   <%= form.select :user_id,
   options_for_select(
-    [["All Users", '']]+User.all.pluck(:first_name, :id),
+    [["All Users", '']]+User.all.map{|usr|[usr.name, usr.id] },
     params[:user_id]
     ),
   { include_blank: false },
