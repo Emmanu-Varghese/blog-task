@@ -1,4 +1,4 @@
-<%= form_with(model: comment, local: false, id: "edit-comment-form") do |form| %>
+<%= form_with(model: comment, url: [@article, comment], local: false, id: "edit-comment-form") do |form| %>
 
 
   <div class="mb-3">
@@ -8,7 +8,7 @@
   <div class="mb-3">
       <% if comment.persisted? %>
   <div class="float-end">
-    <%= link_to 'Destroy', comment, method: :delete, remote: true, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'Destroy', [@article, comment], method: :delete, remote: true, class: "text-danger", data: { confirm: 'Are you sure?' } %>
   </div>
   <% end %>
     <%= form.submit class: 'btn btn-primary' %>

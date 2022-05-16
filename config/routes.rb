@@ -1,10 +1,11 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
-  resources :comments, except: [:index, :show] do
-    resource :emote, only: :show
+  resources :articles do
+    resources :comments, except: [:index] do
+      resource :emote, only: :show
+    end
   end
-  resources :articles
   mount Sidekiq::Web => "/sidekiq"
 
   devise_for :users

@@ -18,7 +18,7 @@ module Api
           @comment = @article.comments.new(comment_params)
 
           if @comment.save
-            render json: @comment, status: :created, location: @comment
+            render json: @comment, status: :created, location: article_comment_url(@article, @comment)
           else
             render json: @comment.errors, status: :unprocessable_entity
           end
@@ -69,7 +69,7 @@ module Api
 
         # Use callbacks to share common setup or constraints between actions.
         def verify_and_set_comment
-          @comment = Comment.find_by(id: params[:id], commentable_type: "Article", commentable_id: @article.id)
+          @comment = Comment.find_by(id: params[:id], article_id: @article.id)
           return true unless @comment.nil?
 
           head :not_found
@@ -77,7 +77,7 @@ module Api
 
         # Only allow a list of trusted parameters through.
         def comment_params
-          params.require(:comment).permit(:user_id, :body, :commentable_id, :commentable_type)
+          params.require(:comment).permit(:user_id, :body, :user_id)
         end
       end
     end

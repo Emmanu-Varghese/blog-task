@@ -4,7 +4,7 @@
       <%= comment.user.name %> |
       <%= comment.created_at %> |  
       <span id="comment-action-<%= comment.id %>">
-        <%= link_to "Review", edit_comment_path(comment), "data-controller": "turbo" %>
+        <%= link_to "Review", edit_article_comment_path(comment.article,comment), "data-controller": "turbo" %>
       </span>
     </small>
     <%= comment.body %>
@@ -12,7 +12,7 @@
     <div class='emojis'>
       <% Emoji.all.each do |emoji| %>
         <% size = comment.emotes_size(emoji[:key]) %>
-        <%= link_to comment_emote_path(comment, emote: emoji[:key]), class: "emoji #{size.zero? ? 'emoji-gray' : ''}", remote: true do %>
+        <%= link_to article_comment_emote_path(comment.article, comment, emote: emoji[:key]), class: "emoji #{size.zero? ? 'emoji-gray' : ''}", remote: true do %>
           <%= image_tag File.join('emojis', emoji[:key]), size: '35x35', title: emoji[:text] %>
           <%= content_tag :span, size, class: 'count' %>
         <% end %>

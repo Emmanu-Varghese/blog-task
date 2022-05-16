@@ -1,8 +1,8 @@
 require "rails_helper"
 
 RSpec.describe Comment, type: :model do
-  it "is not valid without a commentable" do
-    expect(build(:comment, commentable: nil)).not_to be_valid
+  it "is not valid without a article" do
+    expect(build(:comment, article: nil)).not_to be_valid
   end
 
   it "is not valid without a user" do
