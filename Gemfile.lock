@@ -148,7 +148,7 @@ GEM
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
     io-console (0.5.11)
-    io-wait (0.1.0)
+    io-wait (0.2.1)
     irb (1.4.1)
       reline (>= 0.3.0)
     jbuilder (2.11.5)
@@ -357,7 +357,7 @@ DEPENDENCIES
   faker
   image_processing (~> 1.2)
   importmap-rails
-  io-wait (= 0.1.0)
+  io-wait (= 0.2.1)
   jbuilder
   jsbundling-rails
   mysql2
@@ -377,7 +377,7 @@ DEPENDENCIES
   simplecov
   sprockets-rails
   stimulus-rails
-  strscan (~> 3.0)
+  strscan (~> 3.0.1)
   terser (~> 1.1, >= 1.1.1)
   turbo-rails
   tzinfo-data

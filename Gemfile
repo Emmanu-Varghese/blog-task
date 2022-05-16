@@ -85,5 +85,5 @@ gem "pagy", "~> 5.10"
 
 gem "terser", "~> 1.1", ">= 1.1.1"
 gem "active_model_serializers"
-gem "io-wait", "0.1.0"
-gem 'strscan', '~> 3.0'
+gem "io-wait", "0.2.1"
+gem 'strscan', '~> 3.0.1'
