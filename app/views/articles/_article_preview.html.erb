@@ -1,0 +1,14 @@
+<div id="<%= dom_id article %>">
+<div class="post-preview">
+    
+      <h2 class="post-title"><a href="<%= article_path(article)%>"><%= article.title %></a></h2>
+    
+      <h3 class="post-subtitle"><a href="<%= article_path(article)%>"><%= article.body %></a></h3>
+    <p class="post-meta text-muted">
+      Posted by
+      <a href="#!"><%= article.user.name %></a>
+      on <%= article.created_at.strftime("%B %d, %Y")%>
+    </p>
+  </div>
+  <hr class="my-4">
+</div>

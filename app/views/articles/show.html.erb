@@ -1,0 +1,8 @@
+<%= turbo_stream_from :article %>
+
+<main class="mb-4">
+   <%= render @article %>
+  <% if can? :manage, @article %>
+  <%= render partial: "show_actions"%>
+  <% end %>
+</main>
